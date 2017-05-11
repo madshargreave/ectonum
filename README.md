@@ -9,7 +9,7 @@ by adding `ectonum` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:ectonum, "~> 0.1.0"}]
+  [{:ectonum, "~> 1.0.0"}]
 end
 ```
 
