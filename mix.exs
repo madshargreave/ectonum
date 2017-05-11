@@ -19,7 +19,7 @@ defmodule Ectonum.Mixfile do
 
   defp deps do
     [
-      {:ecto, "2.1.0", override: true}
+      {:ecto, "2.1.0"}
     ]
   end
 
