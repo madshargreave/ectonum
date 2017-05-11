@@ -1,25 +1,37 @@
 defmodule Ectonum do
   @moduledoc """
-  Implements a custom Ecto type for enumerated values
+  Adds a `defenum/2` macro for defining enum types for Ecto schemas.
+  """
+
+  @doc """
+  Defines a custom `Ecto.Type` for enumerated fields.
+
+  ## Usage
+
+      defmodule Profile do
+        import Ectonum
+
+        defenum GenderEnum, [:male, :female]
+
+        schema "profiles" do
+          field :gender, GenderEnum
+        enumerated
+      end
+
+  In the above example the `:gender` field will cast both string and atom values matching any of the options specified in the enum type.
   """
   defmacro defenum(module, values) when is_list(values) do
     quote do
-
       defmodule unquote(module) do
         @behaviour Ecto.Type
 
         def type, do: :string
-
-        def cast(term) do
-          Ectonum.cast(term, __valid_values__)
-        end
-
+        def cast(term), do: Ectonum.cast(term, __valid_values__)
         def load(term), do: Ectonum.load(term)
         def dump(term), do: Ectonum.dump(term)
 
         defp __valid_values__, do: unquote(values)
       end
-
     end
   end
 
