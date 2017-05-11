@@ -15,7 +15,7 @@ defmodule Ectonum do
 
         schema "profiles" do
           field :gender, GenderEnum
-        enumerated
+        end
       end
 
   In the above example the `:gender` field will cast both string and atom values matching any of the options specified in the enum type.
@@ -40,6 +40,7 @@ defmodule Ectonum do
     if value in values, do: {:ok, value}, else: :error
   end
 
+  @doc false
   def cast(value, values) when is_binary(value) do
     atom = String.to_atom(value)
     if atom in values, do: {:ok, atom}, else: :error
@@ -47,9 +48,11 @@ defmodule Ectonum do
 
   def cast(_, _), do: :error
 
+  @doc false
   def load(string) when is_binary(string), do: {:ok, String.to_atom(string)}
   def load(_), do: :error
 
+  @doc false
   def dump(value) when is_binary(value), do: {:ok, value}
   def dump(value) when is_atom(value), do: {:ok, Atom.to_string(value)}
   def dump(_), do: :error
