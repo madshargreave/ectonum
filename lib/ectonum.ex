@@ -26,7 +26,7 @@ defmodule Ectonum do
         @behaviour Ecto.Type
 
         def type, do: :string
-        def cast(term), do: Ectonum.cast(term, __valid_values__)
+        def cast(term), do: Ectonum.cast(term, __valid_values__())
         def load(term), do: Ectonum.load(term)
         def dump(term), do: Ectonum.dump(term)
 
