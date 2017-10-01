@@ -22,7 +22,8 @@ defmodule Ectonum.Mixfile do
   defp deps do
     [
       {:ecto, "~> 2.1.0"},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:mix_test_watch, "~> 0.3", only: :dev, runtime: false},
     ]
   end
 
